@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Grid, Typography} from '@material-ui/core';
+import PokeCard from './PokeCard';
 
 export default function MainGrid({pokemons}){
     return (
@@ -8,7 +9,7 @@ export default function MainGrid({pokemons}){
                 { pokemons.map(
                     (pokemon, i) => {
                         return (<Grid item key={i} xs={3}>
-                                    <Typography>{pokemon.name}</Typography>
+                                    <PokeCard pokemon={pokemon}/>
                                 </Grid>)
                     }
                 )}
