@@ -30,7 +30,6 @@ function App() {
     if (nextUrl) {
       let nextPage =  await getData(nextUrl);
       await loadPokemonData(nextPage.results);
-      console.log(pokemonData)
       setNextUrl(nextPage.next); setPrevUrl(nextPage.previous);
     }
   }
@@ -40,13 +39,12 @@ function App() {
     if (prevUrl) {
       let prevPage = await getData(prevUrl);
       await loadPokemonData(prevPage.results);
-      console.log(pokemonData)
       setNextUrl(prevPage.next); setPrevUrl(prevPage.previous);
     }
   }
 
   useEffect(
-    () => {fetchData().then(console.log(pokemonData))}
+    () => {fetchData();}
   ,[])
 
   return (
