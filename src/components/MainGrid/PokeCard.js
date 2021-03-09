@@ -12,8 +12,9 @@ export default function PokeCard({pokemon, classes}){
             </Card>
         </>) 
         : (<Card>
+            <CardMedia image="https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png" className={classes.image}/>
             <CardActions>
-                <Typography>An Error occure</Typography>
+                <Button>Missing No.</Button>
             </CardActions>
         </Card>)
     )
