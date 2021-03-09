@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import getData from './api/api';
+import MainGrid from './components/MainGrid/MainGrid';
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
@@ -47,10 +48,11 @@ function App() {
     () => {fetchData();}
   ,[])
 
-  return (
+  return ( (pokemonData) ? (
     <div className="App">
       <Navbar loadPrevPage={loadPrevPage} loadNextPage={loadNextPage}/>
-    </div> 
+      <MainGrid pokemons={pokemonData}></MainGrid>
+    </div> ) : <></>
   );
 }
 
