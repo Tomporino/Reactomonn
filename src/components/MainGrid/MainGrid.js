@@ -3,25 +3,25 @@ import {Grid, Typography, makeStyles} from '@material-ui/core';
 import PokeCard from './PokeCard';
 
 const useStyles = makeStyles((theme) => ({
-    image: {
-        height: 200
+    main: {
+        margin: 100
     }
     }));
 
 export default function MainGrid({pokemons}){
     const classes = useStyles();
     return (
-        <>
+        <div className={classes.main}>
             <Grid container>
                 { pokemons.map(
                     (pokemon, i) => {
                         return (<Grid item key={i} xs={3}>
-                                    <PokeCard pokemon={pokemon} classes={classes}/>
+                                    <PokeCard pokemon={pokemon}/>
                                 </Grid>)
                     }
                 )}
             </Grid>
-        </>
+        </div>
     )
 }
 
