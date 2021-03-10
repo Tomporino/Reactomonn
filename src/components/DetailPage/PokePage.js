@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import getData from '../../api/api';
-import {Card, CardActions, CardHeader, CardContent} from '@material-ui/core';
+import {Card, CardActions, CardHeader, CardContent, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const typeColors = {
@@ -66,6 +66,15 @@ export default function PokePage(){
                             }
                         )}
                     </div>
+                    <Typography>Height: {pokemon.height}</Typography>
+                    <Typography>Weight: {pokemon.weight}</Typography>
+                    <Typography>
+                        {pokemon.abilities.map(
+                            (ability, i) => {
+                                return <Typography>Ability{i+1}: {ability.ability.name}</Typography>
+                            }
+                        )}
+                    </Typography>
                 </CardContent>
             </Card>
         </>
