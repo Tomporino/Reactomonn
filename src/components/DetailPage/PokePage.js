@@ -27,8 +27,13 @@ const typeColors = {
 
 
 const useStyles = makeStyles( (theme) => ({
+    main: {
+        textAlign: 'center',
+        margin: 10
+    },
     image: {
-        height: 200
+        height: 300,
+        width: 300
     }
 }));
 
@@ -49,7 +54,7 @@ export default function PokePage(){
     , [])
 
     return ( (pokemon) ? (
-        <>
+        <div className={classes.main}>
             <img src={pokemon.sprites.front_default} className={classes.image}/>
             <Card>
                 <CardHeader title={pokemon.name}
@@ -77,7 +82,7 @@ export default function PokePage(){
                     </Typography>
                 </CardContent>
             </Card>
-        </>
+        </div>
         ) : (<></>)
     )
 }
