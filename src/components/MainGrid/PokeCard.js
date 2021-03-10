@@ -17,7 +17,9 @@ export default function PokeCard({pokemon, classes}){
         : (<Card>
             <CardMedia image="https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png" className={classes.image}/>
             <CardActions>
-                <Button>Missing No.</Button>
+                <a target="_blank" href="https://bulbapedia.bulbagarden.net/wiki/MissingNo">
+                    <Button>Missing No.</Button>
+                </a>
             </CardActions>
         </Card>)
     )
