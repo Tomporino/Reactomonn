@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Typography, Card, CardActions, CardMedia, Button} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
 export default function PokeCard({pokemon, classes}){
     return ( (pokemon.sprites) ? 
@@ -7,7 +8,9 @@ export default function PokeCard({pokemon, classes}){
             <Card>
                 <CardMedia className={classes.image} image={pokemon.sprites.front_default} />
                 <CardActions>
-                    <Button>{pokemon.name}</Button>
+                    <Link to={`pokemon/${pokemon.id}`}>
+                        <Button>{pokemon.name}</Button>
+                    </Link>
                 </CardActions>
             </Card>
         </>) 
