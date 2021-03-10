@@ -1,8 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import getData from './api/api';
 import MainGrid from './components/MainGrid/MainGrid';
 import Navbar from './components/Navbar/Navbar';
+import PokePage from './components/DetailPage/PokePage'
 
 function App() {
 
@@ -50,8 +51,17 @@ function App() {
 
   return ( (pokemonData) ? (
     <div className="App">
-      <Navbar loadPrevPage={loadPrevPage} loadNextPage={loadNextPage}/>
-      <MainGrid pokemons={pokemonData}></MainGrid>
+      <Router>
+        <Navbar loadPrevPage={loadPrevPage} loadNextPage={loadNextPage}/>
+        <Switch>
+          <Route exact path="/">
+            <MainGrid pokemons={pokemonData}></MainGrid>
+          </Route>
+          <Route path="/pokemon/:id">
+            <PokePage/>
+          </Route>
+        </Switch>
+      </Router>
     </div> ) : <></>
   );
 }
