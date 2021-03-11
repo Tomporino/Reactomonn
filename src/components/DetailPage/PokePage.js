@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import getData from '../../api/api';
-import {Card, CardActions, CardHeader, CardContent, Typography} from '@material-ui/core';
+import {Card, CardActions, CardHeader, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import {typeColors} from './TypeColors';
 
@@ -9,10 +9,16 @@ import {typeColors} from './TypeColors';
 const useStyles = makeStyles( (theme) => ({
     main: {
         textAlign: 'center',
-        margin: 10
+        margin: 10,
+        display: 'flex',
+        alignContent: "center",
+        justifyContent: 'center'
     },
     image: {
         height: 300,
+        width: 300
+    },
+    details: {
         width: 300
     }
 }));
@@ -35,8 +41,8 @@ export default function PokePage(){
 
     return ( (pokemon) ? (
         <div className={classes.main}>
-            <img src={pokemon.sprites.front_default} className={classes.image}/>
-            <Card>
+            <Card className={classes.details}>
+                <CardMedia image={pokemon.sprites.front_default} className={classes.image}/>
                 <CardHeader title={pokemon.name}
                 />
                 <CardContent>
