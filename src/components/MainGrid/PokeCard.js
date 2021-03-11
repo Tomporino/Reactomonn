@@ -12,7 +12,7 @@ const useStyles = makeStyles( (theme) => ({
         position: 'relative'
     },
     pokeball: {
-        height: 20
+        height: 30
     }
 }))
 
@@ -29,7 +29,7 @@ export default function PokeCard({pokemon}){
                     <Link to={`pokemon/${pokemon.id}`}>
                         <Button>{pokemon.name}</Button>
                     </Link>
-                    <Button><img className={classes.pokeball} src={process.env.PUBLIC_URL + '/img/pokeball.png'}/></Button>  
+                    <Button><img className={classes.pokeball} src='/img/pokeball.png'/></Button>  
                 </CardActions>
             </Card>
         </div>) 

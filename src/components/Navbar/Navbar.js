@@ -5,6 +5,9 @@ import {makeStyles} from '@material-ui/core/styles';
 const useStyles = makeStyles( (theme) => ({
     main: {
         backgroundColor: 'red'
+    },
+    text: {
+        color: 'white'
     }
 }))
 
@@ -16,10 +19,10 @@ export default function Navbar({loadPrevPage, loadNextPage}) {
         <AppBar className={classes.main} position="static">
             <Toolbar>
                 <Link to="/">
-                    <Typography>Reactomon</Typography>
+                    <Typography className={classes.text}>Reactomon</Typography>
                 </Link>
-                <Button onClick={loadPrevPage}>Prev</Button>
-                <Button onClick={loadNextPage}>Next</Button>
+                <Button className={classes.text} onClick={loadPrevPage}>Prev</Button>
+                <Button className={classes.text} onClick={loadNextPage}>Next</Button>
             </Toolbar>
         </AppBar>
     )

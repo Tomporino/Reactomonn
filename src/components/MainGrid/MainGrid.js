@@ -12,7 +12,8 @@ export default function MainGrid({pokemons}){
     const classes = useStyles();
     return (
         <div className={classes.main}>
-            <Grid container>
+            <Grid container
+            spacing={5}>
                 { pokemons.map(
                     (pokemon, i) => {
                         return (<Grid item key={i} xs={3}>
