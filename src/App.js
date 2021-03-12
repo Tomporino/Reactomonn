@@ -50,7 +50,8 @@ function App() {
   ,[])
 
   return ( (pokemonData) ? (
-    <div className="App">
+    <div className="App"
+    style={{backgroundImage: "url('/img/ballbg.png')"}}>
       <Router>
         <Navbar loadPrevPage={loadPrevPage} loadNextPage={loadNextPage}/>
         <Switch>
