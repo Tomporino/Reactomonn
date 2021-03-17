@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Typography, Card, CardActions, CardMedia, Button, ButtonBase} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
+import CatchedContext from '../../context/catchedC';
 
 const useStyles = makeStyles( (theme) => ({
     main: {
@@ -18,7 +19,16 @@ const useStyles = makeStyles( (theme) => ({
 
 export default function PokeCard({pokemon}){
 
+    const { catched, setCatched} = useContext(CatchedContext);
+
     const classes = useStyles();
+
+    function Catch() {
+        let catcheds = catched;
+        catcheds.push(pokemon);
+        setCatched(catcheds);
+        console.log(catched);
+    }
 
     return ( (pokemon.sprites) ? 
         (
@@ -29,7 +39,7 @@ export default function PokeCard({pokemon}){
                     <Link to={`pokemon/${pokemon.id}`}>
                         <Button>{pokemon.name}</Button>
                     </Link>
-                    <Button><img className={classes.pokeball} src='/img/pokeball.png'/></Button>  
+                    <Button onClick={Catch}><img className={classes.pokeball} src='/img/pokeball.png'/></Button>  
                 </CardActions>
             </Card>
         </div>) 
