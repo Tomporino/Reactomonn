@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import CatchedContext from '../../context/catchedC';
 import MainGrid from '../../components/MainGrid/MainGrid';
 
-export default function Catched({classes}){
+export default function Catched(){
 
     const { catched } = useContext(CatchedContext);
 
