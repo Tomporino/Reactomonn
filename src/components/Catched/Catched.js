@@ -3,7 +3,10 @@ import CatchedContext from '../../context/catchedC';
 import MainGrid from '../../components/MainGrid/MainGrid';
 
 export default function Catched({classes}){
+
     const { catched } = useContext(CatchedContext);
+
+    useEffect(() => console.log(catched))
 
     return (
         <>

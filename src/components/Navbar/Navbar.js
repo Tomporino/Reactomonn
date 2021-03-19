@@ -21,6 +21,9 @@ export default function Navbar({loadPrevPage, loadNextPage}) {
                 <Link to="/">
                     <Typography className={classes.text}>Reactomon</Typography>
                 </Link>
+                <Link to="/catched">
+                    <Typography className={classes.text}>Catched</Typography>
+                </Link>
                 <Button className={classes.text} onClick={loadPrevPage}>Prev</Button>
                 <Button className={classes.text} onClick={loadNextPage}>Next</Button>
             </Toolbar>
