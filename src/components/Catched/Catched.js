@@ -6,11 +6,9 @@ export default function Catched(){
 
     const { catched } = useContext(CatchedContext);
 
-    useEffect(() => console.log(catched))
-
     return (
-        <>
+        <div>
         {catched.length > 0 ? <MainGrid pokemons={catched}/> : <div>No Pokemons Catched Yet!</div>}
-        </>
+        </div>
     )
 }
