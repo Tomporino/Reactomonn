@@ -31,9 +31,10 @@ export default function PokeCard({pokemon}){
         console.log(catched);
     }
 
-    return ( (pokemon.sprites) ? 
-        (
+    return (
         <div className={classes.main}>
+        {(pokemon.sprites) ? 
+        (
             <Card>
                 <CardMedia className={classes.image} image={pokemon.sprites.front_default} />
                 <CardActions>
@@ -43,14 +44,18 @@ export default function PokeCard({pokemon}){
                     <Button onClick={Catch}><img className={classes.pokeball} src='/img/pokeball.png'/></Button>  
                 </CardActions>
             </Card>
-        </div>) 
-        : (<Card>
-            <CardMedia image="https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png" className={classes.image}/>
-            <CardActions>
-                <a target="_blank" href="https://bulbapedia.bulbagarden.net/wiki/MissingNo">
-                    <Button>Missing No.</Button>
-                </a>
-            </CardActions>
-        </Card>)
+        ) 
+        : (
+            <Card>
+                <CardMedia image="https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png" className={classes.image}/>
+                <CardActions>
+                    <a target="_blank" href="https://bulbapedia.bulbagarden.net/wiki/MissingNo">
+                        <Button>Missing No.</Button>
+                    </a>
+                    <Button><img className={classes.pokeball} src='/img/pokeball.png'/></Button>
+                </CardActions>
+            </Card>
+        )}
+    </div>
     )
 }
