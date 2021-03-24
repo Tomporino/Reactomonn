@@ -11,8 +11,7 @@ const useStyles = makeStyles( (theme) => ({
         textAlign: 'center',
         display: 'flex',
         alignContent: "center",
-        justifyContent: 'center',
-        height: '100vh',
+        justifyContent: 'center'
         },
     image: {
         height: 300,

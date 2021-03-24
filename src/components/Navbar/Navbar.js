@@ -6,8 +6,9 @@ const useStyles = makeStyles( (theme) => ({
     main: {
         backgroundColor: 'red'
     },
-    text: {
-        color: 'white'
+    link: {
+        color: 'white',
+        textDecoration: 'none'
     }
 }))
 
@@ -18,8 +19,11 @@ export default function Navbar({loadPrevPage, loadNextPage}) {
     return (
         <AppBar className={classes.main} position="static">
             <Toolbar>
-                <Link to="/">
-                    <Typography className={classes.text}>Reactomon</Typography>
+                <Link className={classes.link} to="/">
+                    <Typography>Reactomon</Typography>
+                </Link>
+                <Link className={classes.link} to="/catched">
+                    <Typography>Catched</Typography>
                 </Link>
                 <Button className={classes.text} onClick={loadPrevPage}>Prev</Button>
                 <Button className={classes.text} onClick={loadNextPage}>Next</Button>

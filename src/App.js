@@ -7,10 +7,13 @@ import Navbar from './components/Navbar/Navbar';
 import PokePage from './components/DetailPage/PokePage';
 import {makeStyles} from '@material-ui/core/styles';
 import CatchedContext from './context/catchedC';
+import Catched from './components/Catched/Catched';
+
 
 const useStyles = makeStyles( (theme) => ({
   main: {
-    backgroundImage: "url('/img/ballbg.png')"
+    backgroundImage: "url('/img/pokeballs.png')",
+    minHeight: "100vh"
   }
 }))
 
@@ -22,7 +25,7 @@ function App() {
   const [prevUrl, setPrevUrl] = useState("");
 
   const [catched, setCatched] = useState([]);
-  const provideCatchedValue = useMemo( () => ({catched, setCatched}, [catched, setCatched]));
+  const provideCatchedValue = useMemo( () => ({catched, setCatched}), [catched, setCatched]);
 
   const classes = useStyles();
 
@@ -61,6 +64,7 @@ function App() {
 
   useEffect(
     () => {fetchData();}
+    
   ,[])
 
   return ( (pokemonData) ? (
@@ -74,6 +78,9 @@ function App() {
           </Route>
           <Route path="/pokemon/:id">
             <PokePage/>
+          </Route>
+          <Route exact path="/catched">
+            <Catched/>
           </Route>
         </Switch>
       </Router>
