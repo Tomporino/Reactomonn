@@ -28,7 +28,6 @@ export default function PokeCard({pokemon}){
         let catcheds = catched;
         catcheds.push(pokemon);
         setCatched(catcheds);
-        console.log(catched);
     }
 
     return (
