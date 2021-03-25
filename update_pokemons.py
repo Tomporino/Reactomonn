@@ -27,9 +27,11 @@ def collect_pokemons(pokemons, next_url):
 
 def main():
 	main_url = "https://pokeapi.co/api/v2/pokemon"
+	print("Downloading pokemons...")
 	first_fetch = fetch_data(main_url)
 	pokemons, next_url = first_fetch["results"], first_fetch["next"]
 	all_pokemon = collect_pokemons(pokemons, next_url)
+	print("Writing to file...")
 	save_to_file(all_pokemon)
 	print("DONE")
 
