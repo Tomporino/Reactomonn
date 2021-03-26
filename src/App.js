@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect, useMemo} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import catchedC from './context/catchedC';
 import getData from './api/api';
 import MainGrid from './components/MainGrid/MainGrid';
 import Navbar from './components/Navbar/Navbar';
@@ -62,10 +61,12 @@ function App() {
     }
   }
 
+
   useEffect(
     () => {fetchData();}
     
   ,[])
+
 
   return ( (pokemonData) ? (
     <div className={classes.main}>
