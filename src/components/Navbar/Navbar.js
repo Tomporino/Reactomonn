@@ -53,12 +53,29 @@ const useStyles = makeStyles( (theme) => ({
 export default function Navbar({loadPrevPage, loadNextPage}) {
 
     const [pokemons, setPokemons] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("")
 
     let openfile = () => {
         fetch("pokemons/pokemons.txt")
         .then(response => response.text())
-        .then(data => setPokemons(data))
+        .then(data => setPokemonsState(data))
     }
+
+    let setPokemonsState = (fileData) => {
+        let regex = /\{(.*?)\}/g;
+        let result = [...fileData.matchAll(regex)]
+        setPokemons(result.map(pokemon => JSON.parse(pokemon[0])))
+    }
+
+    let editSearchTerm = (e) => {
+        setSearchTerm(e.target.value);
+        console.log(searchTerm)
+        console.log(search())
+    }
+    
+    let search = () => {
+        return pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    };
 
     useEffect(() => {
         openfile()
@@ -82,6 +99,7 @@ export default function Navbar({loadPrevPage, loadNextPage}) {
                         {/* <SearchIcon/> */}
                     </div>
                     <InputBase
+                    onChange={editSearchTerm}
                     placeholder="Search..."
                     classes={{
                         root: classes.inputRoot,
