@@ -1,6 +1,8 @@
 import { makeStyles, InputBase, fade } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
+import Dropdown from './DropdownMenu';
 
+// STYLE
 
 const useStyles = makeStyles((theme) => ({
     search: {
@@ -42,9 +44,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+// COMPONENT
+
 export default function SearchBar(){
 
     const [pokemons, setPokemons] = useState([]);
+    const [foundPokemons, setFoundPokemons] = useState([])
     const [searchTerm, setSearchTerm] = useState("");
     const classes = useStyles();
 
@@ -60,10 +65,21 @@ export default function SearchBar(){
         setPokemons(result.map(pokemon => JSON.parse(pokemon[0])))
     }
 
+
+    let compare = (a, b) => {
+        if (a.name < b.name){
+            return -1;
+        }
+        if (a.name > b.name){
+            return 1;
+        }
+        return 0;
+    }
+
     let editSearchTerm = (e) => {
         setSearchTerm(e.target.value);
-        console.log(searchTerm)
-        console.log(search())
+        let filterPokemons = search().sort(compare).slice(0, 6)
+        setFoundPokemons(filterPokemons)
     }
     
     let search = () => {
@@ -76,16 +92,20 @@ export default function SearchBar(){
 
     return (
         <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                        {/* <SearchIcon/> */}
-                    </div>
-                    <InputBase
-                    onChange={editSearchTerm}
-                    placeholder="Search..."
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}/>
+            <div className={classes.searchIcon}>
+                {/* <SearchIcon/> */}
+            </div>
+            <InputBase
+            onChange={editSearchTerm}
+            placeholder="Search..."
+            classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+            }}/>
+            {(searchTerm ? 
+                <Dropdown pokemons={foundPokemons}/>
+                :null
+            )}
         </div>
     )
 }
