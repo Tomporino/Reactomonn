@@ -1,6 +1,8 @@
 import {AppBar, Typography, Button, Toolbar} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
+import { useState, useEffect } from 'react';
+import SearchBar from '../SearchBar/SearchBar';
 
 const useStyles = makeStyles( (theme) => ({
     main: {
@@ -27,6 +29,7 @@ export default function Navbar({loadPrevPage, loadNextPage}) {
                 </Link>
                 <Button className={classes.text} onClick={loadPrevPage}>Prev</Button>
                 <Button className={classes.text} onClick={loadNextPage}>Next</Button>
+                <SearchBar/>
             </Toolbar>
         </AppBar>
     )
