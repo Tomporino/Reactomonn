@@ -78,7 +78,7 @@ export default function SearchBar(){
 
     let editSearchTerm = (e) => {
         setSearchTerm(e.target.value);
-        let filterPokemons = search().sort(compare).slice(0, 6)
+        let filterPokemons = search().sort(compare).slice(0, 5)
         setFoundPokemons(filterPokemons)
     }
     
