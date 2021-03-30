@@ -9,11 +9,10 @@ import {typeColors} from './TypeColors';
 const useStyles = makeStyles( (theme) => ({
     main: {
         textAlign: 'center',
-        margin: 10,
         display: 'flex',
         alignContent: "center",
         justifyContent: 'center'
-    },
+        },
     image: {
         height: 200,
         width: 200
@@ -26,7 +25,8 @@ const useStyles = makeStyles( (theme) => ({
 export default function PokePage(){
     let { id } = useParams();
     const [pokemon, setPokemon] = useState(null);
-    const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${ id }`
+    const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${ id }`;
+
 
     const classes = useStyles();
 

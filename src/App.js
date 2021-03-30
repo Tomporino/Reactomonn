@@ -1,9 +1,20 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect, useMemo} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import getData from './api/api';
 import MainGrid from './components/MainGrid/MainGrid';
 import Navbar from './components/Navbar/Navbar';
-import PokePage from './components/DetailPage/PokePage'
+import PokePage from './components/DetailPage/PokePage';
+import {makeStyles} from '@material-ui/core/styles';
+import CatchedContext from './context/catchedC';
+import Catched from './components/Catched/Catched';
+
+
+const useStyles = makeStyles( (theme) => ({
+  main: {
+    backgroundImage: "url('/img/pokeballs.png')",
+    minHeight: "100vh"
+  }
+}))
 
 function App() {
 
@@ -12,6 +23,10 @@ function App() {
   const [nextUrl, setNextUrl] = useState("");
   const [prevUrl, setPrevUrl] = useState("");
 
+  const [catched, setCatched] = useState([]);
+  const provideCatchedValue = useMemo( () => ({catched, setCatched}), [catched, setCatched]);
+
+  const classes = useStyles();
 
   async function fetchData() {
     let res = await getData(mainUrl);
@@ -27,6 +42,7 @@ function App() {
       }));
     setPokemonData(_pokemons);
   }
+
 
   async function loadNextPage() {
     if (nextUrl) {
@@ -45,13 +61,16 @@ function App() {
     }
   }
 
+
   useEffect(
     () => {fetchData();}
+    
   ,[])
 
+
   return ( (pokemonData) ? (
-    <div className="App"
-    style={{backgroundImage: "url('/img/ballbg.png')"}}>
+    <div className={classes.main}>
+      <CatchedContext.Provider value={provideCatchedValue}>
       <Router>
         <Navbar loadPrevPage={loadPrevPage} loadNextPage={loadNextPage}/>
         <Switch>
@@ -61,8 +80,12 @@ function App() {
           <Route path="/pokemon/:id">
             <PokePage/>
           </Route>
+          <Route exact path="/catched">
+            <Catched/>
+          </Route>
         </Switch>
       </Router>
+      </CatchedContext.Provider>
     </div> ) : <></>
   );
 }
