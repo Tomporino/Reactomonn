@@ -6,7 +6,8 @@ import SearchBar from '../SearchBar/SearchBar';
 
 const useStyles = makeStyles( (theme) => ({
     main: {
-        backgroundColor: 'red'
+        backgroundColor: '#F44336',
+        border: "solid black 5px"
     },
     link: {
         color: 'white',

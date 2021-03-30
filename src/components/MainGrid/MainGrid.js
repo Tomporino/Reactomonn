@@ -1,10 +1,13 @@
 import React from 'react';
-import {Grid, Typography, makeStyles} from '@material-ui/core';
+import {Grid, Typography, makeStyles, fade} from '@material-ui/core';
 import PokeCard from './PokeCard';
 
 const useStyles = makeStyles((theme) => ({
     main: {
-        margin: 100
+        margin: 100,
+        padding: 50,
+        backgroundColor:fade("#1d1d1d", 0.8),
+        border: "solid black 5px"
     }
     }));
 
@@ -13,7 +16,7 @@ export default function MainGrid({pokemons}){
     return (
         <div className={classes.main}>
             <Grid container
-            spacing={5}>
+            spacing={3}>
                 { pokemons.map(
                     (pokemon, i) => {
                         return (<Grid item key={i} xs={3}>

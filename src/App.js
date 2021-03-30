@@ -11,7 +11,8 @@ import Catched from './components/Catched/Catched';
 
 const useStyles = makeStyles( (theme) => ({
   main: {
-    backgroundImage: "url('/img/pokeballs.png')",
+    // backgroundImage: "url('/img/pokeballs.png')",
+    backgroundColor: '#F44336',
     minHeight: "100vh"
   }
 }))

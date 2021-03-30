@@ -6,7 +6,8 @@ import CatchedContext from '../../context/catchedC';
 
 const useStyles = makeStyles( (theme) => ({
     main: {
-        padding: 10
+        padding: 10,
+        border: "solid black 2px"
     },
     image: {
         height: 200,
@@ -14,6 +15,9 @@ const useStyles = makeStyles( (theme) => ({
     },
     pokeball: {
         height: 30
+    },
+    card: {
+        border: "solid black 2px"
     }
 }))
 
@@ -34,7 +38,7 @@ export default function PokeCard({pokemon}){
         <div className={classes.main}>
         {(pokemon.sprites) ? 
         (
-            <Card>
+            <Card className={classes.card}>
                 <CardMedia className={classes.image} image={pokemon.sprites.front_default} />
                 <CardActions>
                     <Link to={`pokemon/${pokemon.id}`}>
