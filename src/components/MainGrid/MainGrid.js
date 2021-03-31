@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     main: {
         margin: 100,
         padding: 50,
-        backgroundColor:fade("#1d1d1d", 0.8),
+        backgroundColor: "#42464c", //fade("#1d1d1d", 0.8),
         border: "solid black 5px"
     }
     }));
