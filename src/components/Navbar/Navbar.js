@@ -16,32 +16,36 @@ const useStyles = makeStyles( (theme) => ({
         textDecoration: 'none'
     },
     bigbutton: {
-        border: 'solid black 2px',
+        border: 'solid white 2px',
         borderRadius: '100px',
         backgroundColor: 'blue',
         height: '50px',
-        width: '50px'
+        width: '50px',
+        margin: '10px'
     },
     themebutton: {
-        border: 'solid black 2px',
+        border: 'solid black 1px',
         borderRadius: '100px',
         backgroundColor: 'red',
         height: '20px',
-        width: '20px'
+        width: '20px',
+        margin: '10px'
     },
     prevbutton: {
-        border: 'solid black 2px',
+        border: 'solid black 1px',
         borderRadius: '100px',
         backgroundColor: 'yellow',
         height: '20px',
-        width: '20px'
+        width: '20px',
+        margin: '10px'
     },
     nextbutton: {
-        border: 'solid black 2px',
+        border: 'solid black 1px',
         borderRadius: '100px',
         backgroundColor: 'green',
         height: '20px',
-        width: '20px'
+        width: '20px',
+        margin: '10px'
     }
 
 }))
