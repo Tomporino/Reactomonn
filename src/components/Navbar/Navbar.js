@@ -21,7 +21,29 @@ const useStyles = makeStyles( (theme) => ({
         backgroundColor: 'blue',
         height: '50px',
         width: '50px'
+    },
+    themebutton: {
+        border: 'solid black 2px',
+        borderRadius: '100px',
+        backgroundColor: 'red',
+        height: '20px',
+        width: '20px'
+    },
+    prevbutton: {
+        border: 'solid black 2px',
+        borderRadius: '100px',
+        backgroundColor: 'yellow',
+        height: '20px',
+        width: '20px'
+    },
+    nextbutton: {
+        border: 'solid black 2px',
+        borderRadius: '100px',
+        backgroundColor: 'green',
+        height: '20px',
+        width: '20px'
     }
+
 }))
 
 export default function Navbar({loadPrevPage, loadNextPage}) {
@@ -35,10 +57,10 @@ export default function Navbar({loadPrevPage, loadNextPage}) {
                     <div className={classes.bigbutton}/>
                 </Link>
                 <Link className={classes.link} to="/catched">
-                    <Typography>Catched</Typography>
+                    <div className={classes.themebutton}/>
                 </Link>
-                <Button className={classes.text} onClick={loadPrevPage}>Prev</Button>
-                <Button className={classes.text} onClick={loadNextPage}>Next</Button>
+                <div className={classes.prevbutton} onClick={loadPrevPage}/>
+                <div className={classes.nextbutton} onClick={loadNextPage}/>
                 <SearchBar/>
             </Toolbar>
         </AppBar>
