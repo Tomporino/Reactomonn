@@ -78,16 +78,19 @@ export default function SearchBar(){
 
     let editSearchTerm = (e) => {
         setSearchTerm(e.target.value);
+    }
+
+    useEffect(() => {
         let filterPokemons = search().sort(compare).slice(0, 5)
         setFoundPokemons(filterPokemons)
-    }
+    }, [searchTerm])
     
     let search = () => {
         return pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
     };
 
     useEffect(() => {
-        openfile()
+        openfile();
     }, [])
 
     return (
