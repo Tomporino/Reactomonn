@@ -8,17 +8,37 @@ import {typeColors} from './TypeColors';
 
 const useStyles = makeStyles( (theme) => ({
     main: {
+        margin: 100,
+        padding: 50,
+        backgroundColor: "#42464c", //fade("#1d1d1d", 0.8),
+        border: "solid black 5px"
+    },
+    sub: {
         textAlign: 'center',
         display: 'flex',
+        flexDirection: 'row',
         alignContent: "center",
-        justifyContent: 'center'
+        justifyContent: 'flex-end'
         },
     image: {
         height: 200,
         width: 200
     },
     details: {
-        width: 300
+        textTransform: 'capitalize'
+    },
+    types: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    abilities: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    ability: {
+        backgroundColor: 'white',
+        border: '1px solid black',
+        borderRadius: '10px'
     }
 }));
 
@@ -41,33 +61,28 @@ export default function PokePage(){
 
     return ( (pokemon) ? (
         <div className={classes.main}>
-            <Card className={classes.details}>
-                <CardMedia image={pokemon.sprites.front_default} className={classes.image}/>
-                <CardHeader title={pokemon.name}
-                />
-                <CardContent>
-                    <div>
+            <div className={classes.sub}>
+                <img src={pokemon.sprites.front_default} className={classes.image}/>
+                <div className={classes.details}>
+                    <div className={classes.types}> 
                         { pokemon.types.map(
                             type => {
                                 return (
-                                    <span style={{ backgroundColor: typeColors[type.type.name]}}>
+                                    <div style={{ backgroundColor: typeColors[type.type.name]}}>
                                         {type.type.name}
-                                    </span>
-                                )
+                                    </div>
+                                )}
+                        )}
+                    </div>
+                    <div className={classes.abilities}>
+                        {pokemon.abilities.map(
+                            (ability) => {
+                                return <div className={classes.ability}>{ability.ability.name}</div>
                             }
                         )}
                     </div>
-                    <Typography>Height: {pokemon.height}</Typography>
-                    <Typography>Weight: {pokemon.weight}</Typography>
-                    <Typography>
-                        {pokemon.abilities.map(
-                            (ability, i) => {
-                                return <Typography>Ability{i+1}: {ability.ability.name}</Typography>
-                            }
-                        )}
-                    </Typography>
-                </CardContent>
-            </Card>
+                </div>
+            </div>
         </div>
         ) : (<></>)
     )
