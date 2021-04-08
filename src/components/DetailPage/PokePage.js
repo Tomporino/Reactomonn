@@ -4,6 +4,7 @@ import getData from '../../api/api';
 import {Card, CardActions, CardHeader, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import Details from './Details';
+import Evolutions from './Evolutions';
 
 
 const useStyles = makeStyles( (theme) => ({
@@ -35,6 +36,7 @@ export default function PokePage(){
     return ( (pokemon) ? (
         <div className={classes.main}>
             <Details pokemon={pokemon}/>
+            <Evolutions pokemon={pokemon}/>
         </div>
         ) : (<></>)
     )
