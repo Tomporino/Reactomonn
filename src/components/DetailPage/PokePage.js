@@ -12,7 +12,9 @@ const useStyles = makeStyles( (theme) => ({
         margin: 100,
         padding: 50,
         backgroundColor: "#42464c", //fade("#1d1d1d", 0.8),
-        border: "solid black 5px"
+        border: "solid black 5px",
+        display: 'flex',
+        flexDirection: 'row'
     }
 }));
 
