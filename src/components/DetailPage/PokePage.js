@@ -3,22 +3,15 @@ import {useParams} from 'react-router-dom';
 import getData from '../../api/api';
 import {Card, CardActions, CardHeader, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import {typeColors} from './TypeColors';
+import Details from './Details';
 
 
 const useStyles = makeStyles( (theme) => ({
     main: {
-        textAlign: 'center',
-        display: 'flex',
-        alignContent: "center",
-        justifyContent: 'center'
-        },
-    image: {
-        height: 300,
-        width: 300
-    },
-    details: {
-        width: 300
+        margin: 100,
+        padding: 50,
+        backgroundColor: "#42464c", //fade("#1d1d1d", 0.8),
+        border: "solid black 5px"
     }
 }));
 
@@ -41,33 +34,7 @@ export default function PokePage(){
 
     return ( (pokemon) ? (
         <div className={classes.main}>
-            <Card className={classes.details}>
-                <CardMedia image={pokemon.sprites.front_default} className={classes.image}/>
-                <CardHeader title={pokemon.name}
-                />
-                <CardContent>
-                    <div>
-                        { pokemon.types.map(
-                            type => {
-                                return (
-                                    <span style={{ backgroundColor: typeColors[type.type.name]}}>
-                                        {type.type.name}
-                                    </span>
-                                )
-                            }
-                        )}
-                    </div>
-                    <Typography>Height: {pokemon.height}</Typography>
-                    <Typography>Weight: {pokemon.weight}</Typography>
-                    <Typography>
-                        {pokemon.abilities.map(
-                            (ability, i) => {
-                                return <Typography>Ability{i+1}: {ability.ability.name}</Typography>
-                            }
-                        )}
-                    </Typography>
-                </CardContent>
-            </Card>
+            <Details pokemon={pokemon}/>
         </div>
         ) : (<></>)
     )

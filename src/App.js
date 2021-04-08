@@ -11,8 +11,11 @@ import Catched from './components/Catched/Catched';
 
 const useStyles = makeStyles( (theme) => ({
   main: {
-    backgroundImage: "url('/img/pokeballs.png')",
-    minHeight: "100vh"
+    // backgroundImage: "url('/img/pokeballs.png')",
+    backgroundColor: '#F44336',
+    minHeight: "100vh",
+    border: 'solid black 5px',
+    borderTop: 'none'
   }
 }))
 
@@ -73,17 +76,19 @@ function App() {
       <CatchedContext.Provider value={provideCatchedValue}>
       <Router>
         <Navbar loadPrevPage={loadPrevPage} loadNextPage={loadNextPage}/>
-        <Switch>
-          <Route exact path="/">
-            <MainGrid pokemons={pokemonData}></MainGrid>
-          </Route>
-          <Route path="/pokemon/:id">
-            <PokePage/>
-          </Route>
-          <Route exact path="/catched">
-            <Catched/>
-          </Route>
-        </Switch>
+        <div className={classes.content}>
+          <Switch>
+            <Route exact path="/">
+              <MainGrid pokemons={pokemonData}></MainGrid>
+            </Route>
+            <Route path="/pokemon/:id">
+              <PokePage/>
+            </Route>
+            <Route exact path="/catched">
+              <Catched/>
+            </Route>
+          </Switch>
+        </div>
       </Router>
       </CatchedContext.Provider>
     </div> ) : <></>
