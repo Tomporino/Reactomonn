@@ -18,8 +18,19 @@ export default function Evolutions({pokemon}){
             .then(evolves => {setEvolutions(evolves)})
     }
 
+    function getNestedEvolutions(evolveChain, evolves) {
+        console.log(evolveChain)
+    }
+
     function mapEvolutions() {
-        
+        if (evolutions.length == 1) {
+            getNestedEvolutions(evolutions, [])
+        } else if (evolutions.length > 1) {
+            let evs = evolutions.map(
+                (evo) => {return evo.species}
+            )
+            console.log(evs)
+        }
     }
 
     useEffect(() => {

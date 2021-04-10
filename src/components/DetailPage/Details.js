@@ -63,9 +63,9 @@ export default function Details({pokemon}){
 
                 <div className={classes.types}> 
                     { pokemon.types.map(
-                        type => {
+                        (type, i) => {
                             return (
-                                <Typography className={classes.type} style={{ backgroundColor: typeColors[type.type.name]}}>
+                                <Typography key={i} className={classes.type} style={{ backgroundColor: typeColors[type.type.name]}}>
                                     {type.type.name}
                                 </Typography>
                             )}
@@ -74,8 +74,8 @@ export default function Details({pokemon}){
 
                 <div className={classes.abilities}>
                     {pokemon.abilities.map(
-                        (ability) => {
-                            return <Typography className={classes.ability}>{ability.ability.name}</Typography>
+                        (ability, i) => {
+                            return <Typography key={i} className={classes.ability}>{ability.ability.name}</Typography>
                         }
                     )}
                 </div>
@@ -84,8 +84,8 @@ export default function Details({pokemon}){
 
             <div className={classes.stats}>
                 {pokemon.stats.map(
-                    (stat) => {
-                        return <Typography>{stat.stat.name}: {stat.base_stat}</Typography>
+                    (stat, i) => {
+                        return <Typography key={i}>{stat.stat.name}: {stat.base_stat}</Typography>
                     }
                 )}
             </div>
