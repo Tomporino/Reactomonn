@@ -1,5 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import getData from '../../api/api';
 import {typeColors} from './TypeColors';
 
 
@@ -44,17 +45,36 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid black',
         borderRadius: '10px',
     },
-    stats: {
+    details: {
         border: 'solid black 3px',
-    }
+        padding: '5px'
+    },
+    stats: {
+
+    },
+    flavor_text: {
+        width: '150px'
+    },
 }))
 
 
 export default function Details({pokemon}){
 
+    const [species, setSpecies] = useState(null);
+    const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}`
+
     const classes = useStyles();
 
-    return (
+    async function getSpecies(){
+        await getData(speciesUrl)
+            .then(data => setSpecies(data.flavor_text_entries));
+    }
+
+    useEffect(() => {
+        getSpecies();
+    }, [])
+
+    return ( (species) ?
 
         <div className={classes.main}>
             <div className={classes.sub}>
@@ -82,14 +102,19 @@ export default function Details({pokemon}){
 
             </div>
 
-            <div className={classes.stats}>
-                {pokemon.stats.map(
-                    (stat, i) => {
-                        return <Typography key={i}>{stat.stat.name}: {stat.base_stat}</Typography>
-                    }
-                )}
+            <div className={classes.details}>
+                <div className={classes.stats}>
+                    {pokemon.stats.map(
+                        (stat, i) => {
+                            return <Typography key={i}>{stat.stat.name}: {stat.base_stat}</Typography>
+                        }
+                    )}
+                </div>
+                <div className={classes.flavor_text}>
+                    {species[0].flavor_text}
+                </div>
             </div>
-        </div>
+        </div> : <></>
     );
 
 }

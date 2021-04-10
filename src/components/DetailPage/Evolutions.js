@@ -19,16 +19,25 @@ export default function Evolutions({pokemon}){
     }
 
     function getNestedEvolutions(evolveChain, evolves) {
-        console.log(evolveChain)
+        evolves.push(evolveChain[0].species) 
+        if (evolveChain[0].evolves_to.length == 1) {
+            return getNestedEvolutions(evolveChain[0].evolves_to, evolves)
+        }
+        return evolves
+    }
+
+    function getUniqueEvolutions(){
+        return evolutions.map(
+            (evo) => {return evo.species}
+        )
     }
 
     function mapEvolutions() {
         if (evolutions.length == 1) {
-            getNestedEvolutions(evolutions, [])
+            let evs = getNestedEvolutions(evolutions, []);
+            console.log(evs);
         } else if (evolutions.length > 1) {
-            let evs = evolutions.map(
-                (evo) => {return evo.species}
-            )
+            let evs = getUniqueEvolutions();
             console.log(evs)
         }
     }
