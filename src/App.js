@@ -81,7 +81,7 @@ function App() {
             <Route exact path="/">
               <MainGrid pokemons={pokemonData}></MainGrid>
             </Route>
-            <Route path="/pokemon/:id">
+            <Route exact path="/pokemon/:id">
               <PokePage/>
             </Route>
             <Route exact path="/catched">

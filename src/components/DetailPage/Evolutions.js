@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import getData from '../../api/api';
 
 
@@ -7,7 +8,9 @@ const useStyles = makeStyles((theme) => ({
     main: {
         border: '3px solid black',
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        // width: 'fit-content',
+        // height: 'fit-content'
 
     },
     img: {
@@ -17,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Evolutions({pokemon}){
+function Evolutions({pokemon}){
 
     const [evolutions, setEvolutions] = useState(null);
     const [evolutionChain, setEvolutonChain] = useState(null);
@@ -62,7 +65,7 @@ export default function Evolutions({pokemon}){
             async evData => {
                 return await getData(`https://pokeapi.co/api/v2/pokemon/${evData.name}`)
             }
-        )).then(data => setEvolutonChain(data))
+        )).then(data => setEvolutonChain([pokemon,...data]))
     }
 
     useEffect(() => {
@@ -75,18 +78,22 @@ export default function Evolutions({pokemon}){
         }
     }, evolutions)
 
-    return ((evolutionChain) ? 
+    return ((evolutionChain && evolutions) ? 
         <div className={classes.main}>
             {
                 evolutionChain.map(
                     (evolve, i) => {
                         return (
-                        <div key={i}>
-                            <img src={evolve.sprites.front_default} className={classes.img}/>
-                        </div>)
+                        <Link key={i} to={`pokemon/${evolve.id}`}>
+                            <div>
+                                <img src={evolve.sprites.front_default} className={classes.img}/>
+                            </div>
+                        </Link>)
                     } 
                 )
             }
         </div> : <></>
     )
 }
+
+export default withRouter(Evolutions);

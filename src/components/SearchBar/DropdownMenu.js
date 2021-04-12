@@ -16,7 +16,7 @@ export default function Dropdown({pokemons}) {
         if (pokemonId != null){
             history.push(`pokemon/${pokemonId}`)
         }
-    }, [pokemonId])
+    }, pokemonId)
 
     return (
         <div>

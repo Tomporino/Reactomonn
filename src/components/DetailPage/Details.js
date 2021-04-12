@@ -47,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
     },
     details: {
         border: 'solid black 3px',
-        padding: '5px'
+        padding: '5px',
+        backgroundColor: 'white'
     },
     stats: {
 
