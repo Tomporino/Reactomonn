@@ -17,10 +17,16 @@ def fetch_data(url):
 	return requests.get(url).json()
 
 
-def collect_pokemons(pokemons, next_url):
+def get_pokemon_id(pokemons):
+	return map(lambda pokemon: dict(pokemon, id=fetch_data(pokemon["url"])["id"]), pokemons["results"])
+
+
+def collect_pokemons(pokemons, next_url=None):
+	if next_url == None:
+		return list(get_pokemon_id(pokemons))
 	while next_url:
 		fetched_data = fetch_data(next_url)
-		pokemons += fetched_data["results"]
+		pokemons += list(get_pokemon_id(fetched_data))
 		next_url = fetched_data["next"]
 	return pokemons
 
@@ -29,7 +35,7 @@ def main():
 	main_url = "https://pokeapi.co/api/v2/pokemon"
 	print("Downloading pokemons...")
 	first_fetch = fetch_data(main_url)
-	pokemons, next_url = first_fetch["results"], first_fetch["next"]
+	pokemons, next_url = collect_pokemons(first_fetch), first_fetch["next"]
 	all_pokemon = collect_pokemons(pokemons, next_url)
 	print("Writing to file...")
 	save_to_file(all_pokemon)
