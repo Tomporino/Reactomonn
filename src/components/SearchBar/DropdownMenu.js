@@ -14,9 +14,9 @@ export default function Dropdown({pokemons}) {
 
     useEffect(() => {
         if (pokemonId != null){
-            history.push(`pokemon/${pokemonId}`)
+            history.push(`/pokemon/${pokemonId}`)
         }
-    }, pokemonId)
+    }, [pokemonId])
 
     return (
         <div>

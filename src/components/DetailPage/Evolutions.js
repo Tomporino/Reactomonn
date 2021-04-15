@@ -76,7 +76,7 @@ function Evolutions({pokemon}){
         if (evolutions) {
             mapEvolutions()
         }
-    }, evolutions)
+    }, [evolutions])
 
     return ((evolutionChain && evolutions) ? 
         <div className={classes.main}>
@@ -84,7 +84,7 @@ function Evolutions({pokemon}){
                 evolutionChain.map(
                     (evolve, i) => {
                         return (
-                        <Link key={i} to={`pokemon/${evolve.id}`}>
+                        <Link key={i} to={`/pokemon/${evolve.id}`}>
                             <div>
                                 <img src={evolve.sprites.front_default} className={classes.img}/>
                             </div>
@@ -96,4 +96,4 @@ function Evolutions({pokemon}){
     )
 }
 
-export default withRouter(Evolutions);
+export default Evolutions;

@@ -33,7 +33,7 @@ export default function PokePage(){
 
     useEffect(
         () => {fetchData();}
-    , [])
+    , [id])
 
     return ( (pokemon) ? (
         <div className={classes.main}>
