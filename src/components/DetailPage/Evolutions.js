@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import getData from '../../api/api';
 
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 function Evolutions({pokemon}){
 
     const [evolutions, setEvolutions] = useState(null);
-    const [evolutionChain, setEvolutonChain] = useState(null);
+    const [evolutionChain, setEvolutionChain] = useState(null);
 
     const classes = useStyles();
 
@@ -40,7 +40,7 @@ function Evolutions({pokemon}){
 
     function getNestedEvolutions(evolveChain, evolves) {
         evolves.push(evolveChain[0].species) 
-        if (evolveChain[0].evolves_to.length == 1) {
+        if (evolveChain[0].evolves_to.length === 1) {
             return getNestedEvolutions(evolveChain[0].evolves_to, evolves)
         }
         return evolves
@@ -53,24 +53,26 @@ function Evolutions({pokemon}){
     }
 
     function mapEvolutions() {
-        let evs;
-
-        if (evolutions.length == 1) {
-            evs = getNestedEvolutions(evolutions, []);
-        } else if (evolutions.length > 1) {
-            evs = getUniqueEvolutions();
+        if (evolutions.length > 0){
+            let evs;
+            if (evolutions.length === 1) {
+                evs = getNestedEvolutions(evolutions, []);
+            } else if (evolutions.length > 1) {
+                evs = getUniqueEvolutions();
         }
 
         Promise.all(evs.map(
             async evData => {
                 return await getData(`https://pokeapi.co/api/v2/pokemon/${evData.name}`)
             }
-        )).then(data => setEvolutonChain([pokemon,...data]))
+        )).then(data => setEvolutionChain([pokemon,...data]))
+        }
     }
 
     useEffect(() => {
+        setEvolutionChain(null)
         fetchEvolutionChain();
-    }, [])
+    }, [pokemon])
 
     useEffect(() => {
         if (evolutions) {
