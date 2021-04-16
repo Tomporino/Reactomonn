@@ -1,9 +1,7 @@
-import {AppBar, Typography, Button, Toolbar} from '@material-ui/core';
+import {AppBar, Toolbar} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
-import { useState, useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
-import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles( (theme) => ({
     main: {

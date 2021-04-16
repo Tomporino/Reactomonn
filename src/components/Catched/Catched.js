@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import CatchedContext from '../../context/catchedC';
 import MainGrid from '../../components/MainGrid/MainGrid';
 

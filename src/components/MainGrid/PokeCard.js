@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import {Typography, Card, CardActions, CardMedia, Button, ButtonBase} from '@material-ui/core';
+import React, {useContext} from 'react';
+import { Card, CardActions, CardMedia, Button} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import CatchedContext from '../../context/catchedC';

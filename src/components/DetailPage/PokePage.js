@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import getData from '../../api/api';
-import {Card, CardActions, CardHeader, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import Details from './Details';
 import Evolutions from './Evolutions';
@@ -34,6 +33,8 @@ export default function PokePage(){
     useEffect(
         () => {fetchData();}
     , [id])
+
+    useEffect(() => {}, [pokemon])
 
     return ( (pokemon) ? (
         <div className={classes.main}>

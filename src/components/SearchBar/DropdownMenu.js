@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {} from "react";
 import {Button, makeStyles} from '@material-ui/core';
 import { Link } from 'react-router-dom'; 
-import getData from '../../api/api';
 
 const useStyles = makeStyles((theme) => ({
     link: {

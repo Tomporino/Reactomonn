@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useMemo} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import getData from './api/api';
 import MainGrid from './components/MainGrid/MainGrid';
@@ -67,8 +67,7 @@ function App() {
 
   useEffect(
     () => {fetchData();}
-    
-  ,[])
+  )
 
 
   return ( (pokemonData) ? (
