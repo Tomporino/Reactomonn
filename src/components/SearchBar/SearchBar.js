@@ -76,6 +76,10 @@ export default function SearchBar(){
         return 0;
     }
 
+    let search = () => {
+        return pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    };
+
     let editSearchTerm = (e) => {
         setSearchTerm(e.target.value);
     }
@@ -85,9 +89,6 @@ export default function SearchBar(){
         setFoundPokemons(filterPokemons)
     }, [searchTerm])
     
-    let search = () => {
-        return pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    };
 
     useEffect(() => {
         openfile();

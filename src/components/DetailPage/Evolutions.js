@@ -27,6 +27,8 @@ function Evolutions({pokemon}){
 
     const classes = useStyles();
 
+    const mainUrl = 'https://pokeapi.co/api/v2/pokemon/'
+
     async function fetchEvolutionChain() {
         await getData(pokemon.species.url)
             .then(data => fetchEvolutions(data.evolution_chain))
@@ -34,8 +36,8 @@ function Evolutions({pokemon}){
 
     async function fetchEvolutions(evolveChain) {
         await getData(evolveChain.url)
-            .then(data => data.chain.evolves_to)
-            .then(evolves => {setEvolutions(evolves)})
+            .then(data => data.chain)
+            .then(evolves => {setEvolutions(evolves.evolves_to); console.log(evolves)})
     }
 
     function getNestedEvolutions(evolveChain, evolves) {
@@ -59,18 +61,18 @@ function Evolutions({pokemon}){
                 evs = getNestedEvolutions(evolutions, []);
             } else if (evolutions.length > 1) {
                 evs = getUniqueEvolutions();
-        }
-
-        Promise.all(evs.map(
-            async evData => {
-                return await getData(`https://pokeapi.co/api/v2/pokemon/${evData.name}`)
             }
-        )).then(data => setEvolutionChain([pokemon,...data]))
+
+            Promise.all(evs.map(
+                async evData => {
+                    return await getData(`${mainUrl}${evData.name}`)
+                }
+            )).then(data => setEvolutionChain(data))
         }
     }
 
     useEffect(() => {
-        setEvolutionChain(null)
+        setEvolutionChain(null);
         fetchEvolutionChain();
     }, [pokemon])
 

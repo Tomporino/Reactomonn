@@ -17,7 +17,7 @@ export default function Dropdown({pokemons}) {
             { pokemons.map(
                     (pokemon, i) => {
                         return (
-                            <Link key={i} className={classes.link} to={`/pokemon/${pokemon.id}`}>
+                            <Link key={i} className={classes.link} to={`/pokemon/${pokemon.name}`}>
                                 <Button>
                                     {pokemon.name}
                                 </Button>

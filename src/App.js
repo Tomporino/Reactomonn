@@ -67,7 +67,7 @@ function App() {
 
   useEffect(
     () => {fetchData();}
-  )
+  , [])
 
 
   return ( (pokemonData) ? (
