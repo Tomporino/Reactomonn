@@ -1,5 +1,6 @@
 import { makeStyles, InputBase, fade } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
+import getData from '../../api/api';
 import Dropdown from './DropdownMenu';
 
 // STYLE
@@ -52,18 +53,24 @@ export default function SearchBar(){
     const [foundPokemons, setFoundPokemons] = useState([])
     const [searchTerm, setSearchTerm] = useState("");
     const classes = useStyles();
+    const mainUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=9999999'
 
-    let openfile = () => {
-        fetch("pokemons/pokemons.txt")
-        .then(response => response.text())
-        .then(data => setPokemonsState(data))
+    let setPokemonsState = () => {
+        getData(mainUrl)
+        .then(response => setPokemons(response.results));
     }
 
-    let setPokemonsState = (fileData) => {
-        let regex = /\{(.*?)\}/g;
-        let result = [...fileData.matchAll(regex)]
-        setPokemons(result.map(pokemon => JSON.parse(pokemon[0])))
-    }
+    // let openfile = () => {
+    //     fetch("pokemons/pokemons.txt")
+    //     .then(response => response.text())
+    //     .then(data => setPokemonsState(data))
+    // }
+
+    // let setPokemonsState = (fileData) => {
+    //     let regex = /\{(.*?)\}/g;
+    //     let result = [...fileData.matchAll(regex)]
+    //     setPokemons(result.map(pokemon => JSON.parse(pokemon[0])))
+    // }
 
 
     let compare = (a, b) => {
@@ -91,7 +98,7 @@ export default function SearchBar(){
     
 
     useEffect(() => {
-        openfile();
+        setPokemonsState();
     }, [])
 
     return (
