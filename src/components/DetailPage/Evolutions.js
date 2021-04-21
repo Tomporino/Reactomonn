@@ -24,6 +24,7 @@ function Evolutions({pokemon}){
 
     const [evolutions, setEvolutions] = useState(null);
     const [evolutionChain, setEvolutionChain] = useState(null);
+    const [basePokemon, setBasePokemon] = useState(null)
 
     const classes = useStyles();
 
@@ -37,7 +38,10 @@ function Evolutions({pokemon}){
     async function fetchEvolutions(evolveChain) {
         await getData(evolveChain.url)
             .then(data => data.chain)
-            .then(evolves => {setEvolutions(evolves.evolves_to); console.log(evolves)})
+            .then(evolves => {
+                setEvolutions(evolves.evolves_to); 
+                setBasePokemon(evolves.species);
+            })
     }
 
     function getNestedEvolutions(evolveChain, evolves) {
@@ -58,11 +62,10 @@ function Evolutions({pokemon}){
         if (evolutions.length > 0){
             let evs;
             if (evolutions.length === 1) {
-                evs = getNestedEvolutions(evolutions, []);
+                evs = [basePokemon, ...getNestedEvolutions(evolutions, [])];
             } else if (evolutions.length > 1) {
-                evs = getUniqueEvolutions();
+                evs = [basePokemon, ...getUniqueEvolutions()];
             }
-
             Promise.all(evs.map(
                 async evData => {
                     return await getData(`${mainUrl}${evData.name}`)
@@ -77,10 +80,10 @@ function Evolutions({pokemon}){
     }, [pokemon])
 
     useEffect(() => {
-        if (evolutions) {
+        if (evolutions && basePokemon) {
             mapEvolutions()
         }
-    }, [evolutions])
+    }, [evolutions, basePokemon])
 
     return ((evolutionChain && evolutions) ? 
         <div className={classes.main}>
